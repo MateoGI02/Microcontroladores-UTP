@@ -1,0 +1,1383 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V2.00 build -1524193055 
+                                                                                               Mon Sep 03 13:36:51 2018
+
+Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
+     1  0000                     
+     2                           ; Version 2.00
+     3                           ; Generated 27/05/2018 GMT
+     4                           
+     5                           ; 
+     6                           ; Copyright © 2018, Microchip Technology Inc. and its subsidiaries ("Microchip")
+     7                           ; All rights reserved.
+     8                           ; 
+     9                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+                                 ip").
+    10                           ; 
+    11                           ; Redistribution and use in source and binary forms, with or without modification, are
+    12                           ; permitted provided that the following conditions are met:
+    13                           ; 
+    14                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+                                 t of
+    15                           ;        conditions and the following disclaimer.
+    16                           ; 
+    17                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+                                 list
+    18                           ;        of conditions and the following disclaimer in the documentation and/or other
+    19                           ;        materials provided with the distribution.
+    20                           ; 
+    21                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+                                 is
+    22                           ;        software without specific prior written permission.
+    23                           ; 
+    24                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+
+    25                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+                                 OR
+    26                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+                                 T,
+    27                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+                                 
+    28                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+                                 
+    29                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+                                 RICT
+    30                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+                                 SE OF
+    31                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    32                           ; 
+    33                           
+    34                           
+    35                           ; 
+    36                           ; Code-generator required, PIC18F4550 Definitions
+    37                           ; 
+    38  0000                     fsr0 equ 0FE9h
+    39  0000                     fsr0h equ 0FEAh
+    40  0000                     fsr0l equ 0FE9h
+    41  0000                     fsr1 equ 0FE1h
+    42  0000                     fsr1h equ 0FE2h
+    43  0000                     fsr1l equ 0FE1h
+    44  0000                     fsr2 equ 0FD9h
+    45  0000                     fsr2h equ 0FDAh
+    46  0000                     fsr2l equ 0FD9h
+    47  0000                     indf0 equ 0FEFh
+    48  0000                     indf1 equ 0FE7h
+    49  0000                     indf2 equ 0FDFh
+    50  0000                     intcon equ 0FF2h
+    51  0000                     nvmcon equ 00h
+    52  0000                     pcl equ 0FF9h
+    53  0000                     pclath equ 0FFAh
+    54  0000                     pclatu equ 0FFBh
+    55  0000                     plusw0 equ 0FEBh
+    56  0000                     plusw1 equ 0FE3h
+    57  0000                     plusw2 equ 0FDBh
+    58  0000                     postdec0 equ 0FEDh
+    59  0000                     postdec1 equ 0FE5h
+    60  0000                     postdec2 equ 0FDDh
+    61  0000                     postinc0 equ 0FEEh
+    62  0000                     postinc1 equ 0FE6h
+    63  0000                     postinc2 equ 0FDEh
+    64  0000                     preinc0 equ 0FECh
+    65  0000                     preinc1 equ 0FE4h
+    66  0000                     preinc2 equ 0FDCh
+    67  0000                     prod equ 0FF3h
+    68  0000                     prodh equ 0FF4h
+    69  0000                     prodl equ 0FF3h
+    70  0000                     status equ 0FD8h
+    71  0000                     tablat equ 0FF5h
+    72  0000                     tblptr equ 0FF6h
+    73  0000                     tblptrh equ 0FF7h
+    74  0000                     tblptrl equ 0FF6h
+    75  0000                     tblptru equ 0FF8h
+    76  0000                     tosl equ 0FFDh
+    77  0000                     wreg equ 0FE8h
+    78  0000                     
+     2                           opt pagewidth 120
+     3  0000                     byte0	macro	val
+     4                           	(getbyte(val,0))
+     5                           endm
+     6  0000                     byte1	macro	val
+     7                           	(getbyte(val,1))
+     8                           endm
+     9  0000                     byte2	macro	val
+    10                           	(getbyte(val,2))
+    11                           endm
+    12  0000                     byte3	macro	val
+    13                           	(getbyte(val,3))
+    14                           endm
+    15  0000                     byte4	macro	val
+    16                           	(getbyte(val,4))
+    17                           endm
+    18  0000                     byte5	macro	val
+    19                           	(getbyte(val,5))
+    20                           endm
+    21  0000                     byte6	macro	val
+    22                           	(getbyte(val,6))
+    23                           endm
+    24  0000                     byte7	macro	val
+    25                           	(getbyte(val,7))
+    26                           endm
+    27  0000                     getword	macro	val,pos
+    28                           	(((val) >> (8 * pos)) and 0xffff)
+    29                           endm
+    30  0000                     word0	macro	val
+    31                           	(getword(val,0))
+    32                           endm
+    33  0000                     word1	macro	val
+    34                           	(getword(val,2))
+    35                           endm
+    36  0000                     word2	macro	val
+    37                           	(getword(val,4))
+    38                           endm
+    39  0000                     word3	macro	val
+    40                           	(getword(val,6))
+    41                           endm
+    42  0000                     gettword	macro	val,pos
+    43                           	(((val) >> (8 * pos)) and 0xffffff)
+    44                           endm
+    45  0000                     tword0	macro	val
+    46                           	(gettword(val,0))
+    47                           endm
+    48  0000                     tword1	macro	val
+    49                           	(gettword(val,3))
+    50                           endm
+    51  0000                     tword2	macro	val
+    52                           	(gettword(val,6))
+    53                           endm
+    54  0000                     getdword	macro	val,pos
+    55                           	(((val) >> (8 * pos)) and 0xffffffff)
+    56                           endm
+    57  0000                     dword0	macro	val
+    58                           	(getdword(val,0))
+    59                           endm
+    60  0000                     dword1	macro	val
+    61                           	(getdword(val,4))
+    62                           endm
+    63  0000                     clrc   macro
+    64                           	bcf	status,0
+    65                           endm
+    66  0000                     setc   macro
+    67                           	bsf	status,0
+    68                           endm
+    69  0000                     clrz   macro
+    70                           	bcf	status,2
+    71                           endm
+    72  0000                     setz   macro
+    73                           	bsf	status,2
+    74                           endm
+    75  0000                     skipnz macro
+    76                           	btfsc	status,2
+    77                           endm
+    78  0000                     skipz  macro
+    79                           	btfss	status,2
+    80                           endm
+    81  0000                     skipnc macro
+    82                           	btfsc	status,0
+    83                           endm
+    84  0000                     skipc  macro
+    85                           	btfss	status,0
+    86                           endm
+    87  0000                     pushw macro
+    88                           	movwf postinc1
+    89                           endm
+    90  0000                     pushf macro arg1
+    91                           	movff arg1, postinc1
+    92                           endm
+    93  0000                     popw macro
+    94                           	movf postdec1,f
+    95                           	movf indf1,w
+    96                           endm
+    97  0000                     popf macro arg1
+    98                           	movf postdec1,f
+    99                           	movff indf1,arg1
+   100                           endm
+   101  0000                     popfc macro arg1
+   102                           	movff plusw1,arg1
+   103                           	decfsz fsr1,f
+   104                           endm
+   105  0000                     	global	__ramtop
+   106                           	global	__accesstop
+   107                           # 54 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   108                           SPPDATA equ 0F62h ;# 
+   109  0000                     # 74 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   110                           SPPCFG equ 0F63h ;# 
+   111  0000                     # 151 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   112                           SPPEPS equ 0F64h ;# 
+   113  0000                     # 225 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   114                           SPPCON equ 0F65h ;# 
+   115  0000                     # 251 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   116                           UFRM equ 0F66h ;# 
+   117  0000                     # 258 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   118                           UFRML equ 0F66h ;# 
+   119  0000                     # 336 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   120                           UFRMH equ 0F67h ;# 
+   121  0000                     # 376 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   122                           UIR equ 0F68h ;# 
+   123  0000                     # 432 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   124                           UIE equ 0F69h ;# 
+   125  0000                     # 488 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   126                           UEIR equ 0F6Ah ;# 
+   127  0000                     # 539 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   128                           UEIE equ 0F6Bh ;# 
+   129  0000                     # 590 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   130                           USTAT equ 0F6Ch ;# 
+   131  0000                     # 650 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   132                           UCON equ 0F6Dh ;# 
+   133  0000                     # 701 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   134                           UADDR equ 0F6Eh ;# 
+   135  0000                     # 765 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   136                           UCFG equ 0F6Fh ;# 
+   137  0000                     # 844 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   138                           UEP0 equ 0F70h ;# 
+   139  0000                     # 952 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   140                           UEP1 equ 0F71h ;# 
+   141  0000                     # 1060 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   142                           UEP2 equ 0F72h ;# 
+   143  0000                     # 1168 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   144                           UEP3 equ 0F73h ;# 
+   145  0000                     # 1276 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   146                           UEP4 equ 0F74h ;# 
+   147  0000                     # 1384 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   148                           UEP5 equ 0F75h ;# 
+   149  0000                     # 1492 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   150                           UEP6 equ 0F76h ;# 
+   151  0000                     # 1600 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   152                           UEP7 equ 0F77h ;# 
+   153  0000                     # 1708 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   154                           UEP8 equ 0F78h ;# 
+   155  0000                     # 1784 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   156                           UEP9 equ 0F79h ;# 
+   157  0000                     # 1860 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   158                           UEP10 equ 0F7Ah ;# 
+   159  0000                     # 1936 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   160                           UEP11 equ 0F7Bh ;# 
+   161  0000                     # 2012 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   162                           UEP12 equ 0F7Ch ;# 
+   163  0000                     # 2088 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   164                           UEP13 equ 0F7Dh ;# 
+   165  0000                     # 2164 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   166                           UEP14 equ 0F7Eh ;# 
+   167  0000                     # 2240 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   168                           UEP15 equ 0F7Fh ;# 
+   169  0000                     # 2316 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   170                           PORTA equ 0F80h ;# 
+   171  0000                     # 2455 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   172                           PORTB equ 0F81h ;# 
+   173  0000                     # 2565 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   174                           PORTC equ 0F82h ;# 
+   175  0000                     # 2707 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   176                           PORTD equ 0F83h ;# 
+   177  0000                     # 2828 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   178                           PORTE equ 0F84h ;# 
+   179  0000                     # 2975 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   180                           LATA equ 0F89h ;# 
+   181  0000                     # 3075 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   182                           LATB equ 0F8Ah ;# 
+   183  0000                     # 3187 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   184                           LATC equ 0F8Bh ;# 
+   185  0000                     # 3265 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   186                           LATD equ 0F8Ch ;# 
+   187  0000                     # 3377 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   188                           LATE equ 0F8Dh ;# 
+   189  0000                     # 3429 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   190                           TRISA equ 0F92h ;# 
+   191  0000                     # 3434 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   192                           DDRA equ 0F92h ;# 
+   193  0000                     # 3627 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   194                           TRISB equ 0F93h ;# 
+   195  0000                     # 3632 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   196                           DDRB equ 0F93h ;# 
+   197  0000                     # 3849 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   198                           TRISC equ 0F94h ;# 
+   199  0000                     # 3854 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   200                           DDRC equ 0F94h ;# 
+   201  0000                     # 4003 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   202                           TRISD equ 0F95h ;# 
+   203  0000                     # 4008 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   204                           DDRD equ 0F95h ;# 
+   205  0000                     # 4225 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   206                           TRISE equ 0F96h ;# 
+   207  0000                     # 4230 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   208                           DDRE equ 0F96h ;# 
+   209  0000                     # 4327 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   210                           OSCTUNE equ 0F9Bh ;# 
+   211  0000                     # 4386 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   212                           PIE1 equ 0F9Dh ;# 
+   213  0000                     # 4470 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   214                           PIR1 equ 0F9Eh ;# 
+   215  0000                     # 4554 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   216                           IPR1 equ 0F9Fh ;# 
+   217  0000                     # 4638 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   218                           PIE2 equ 0FA0h ;# 
+   219  0000                     # 4709 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   220                           PIR2 equ 0FA1h ;# 
+   221  0000                     # 4780 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   222                           IPR2 equ 0FA2h ;# 
+   223  0000                     # 4851 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   224                           EECON1 equ 0FA6h ;# 
+   225  0000                     # 4917 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   226                           EECON2 equ 0FA7h ;# 
+   227  0000                     # 4924 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   228                           EEDATA equ 0FA8h ;# 
+   229  0000                     # 4931 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   230                           EEADR equ 0FA9h ;# 
+   231  0000                     # 4938 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   232                           RCSTA equ 0FABh ;# 
+   233  0000                     # 4943 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   234                           RCSTA1 equ 0FABh ;# 
+   235  0000                     # 5148 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   236                           TXSTA equ 0FACh ;# 
+   237  0000                     # 5153 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   238                           TXSTA1 equ 0FACh ;# 
+   239  0000                     # 5404 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   240                           TXREG equ 0FADh ;# 
+   241  0000                     # 5409 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   242                           TXREG1 equ 0FADh ;# 
+   243  0000                     # 5416 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   244                           RCREG equ 0FAEh ;# 
+   245  0000                     # 5421 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   246                           RCREG1 equ 0FAEh ;# 
+   247  0000                     # 5428 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   248                           SPBRG equ 0FAFh ;# 
+   249  0000                     # 5433 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   250                           SPBRG1 equ 0FAFh ;# 
+   251  0000                     # 5440 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   252                           SPBRGH equ 0FB0h ;# 
+   253  0000                     # 5447 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   254                           T3CON equ 0FB1h ;# 
+   255  0000                     # 5568 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   256                           TMR3 equ 0FB2h ;# 
+   257  0000                     # 5575 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   258                           TMR3L equ 0FB2h ;# 
+   259  0000                     # 5582 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   260                           TMR3H equ 0FB3h ;# 
+   261  0000                     # 5589 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   262                           CMCON equ 0FB4h ;# 
+   263  0000                     # 5679 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   264                           CVRCON equ 0FB5h ;# 
+   265  0000                     # 5764 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   266                           ECCP1AS equ 0FB6h ;# 
+   267  0000                     # 5769 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   268                           CCP1AS equ 0FB6h ;# 
+   269  0000                     # 5926 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   270                           ECCP1DEL equ 0FB7h ;# 
+   271  0000                     # 5931 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   272                           CCP1DEL equ 0FB7h ;# 
+   273  0000                     # 6064 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   274                           BAUDCON equ 0FB8h ;# 
+   275  0000                     # 6069 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   276                           BAUDCTL equ 0FB8h ;# 
+   277  0000                     # 6244 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   278                           CCP2CON equ 0FBAh ;# 
+   279  0000                     # 6308 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   280                           CCPR2 equ 0FBBh ;# 
+   281  0000                     # 6315 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   282                           CCPR2L equ 0FBBh ;# 
+   283  0000                     # 6322 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   284                           CCPR2H equ 0FBCh ;# 
+   285  0000                     # 6329 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   286                           CCP1CON equ 0FBDh ;# 
+   287  0000                     # 6334 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   288                           ECCP1CON equ 0FBDh ;# 
+   289  0000                     # 6491 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   290                           CCPR1 equ 0FBEh ;# 
+   291  0000                     # 6498 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   292                           CCPR1L equ 0FBEh ;# 
+   293  0000                     # 6505 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   294                           CCPR1H equ 0FBFh ;# 
+   295  0000                     # 6512 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   296                           ADCON2 equ 0FC0h ;# 
+   297  0000                     # 6583 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   298                           ADCON1 equ 0FC1h ;# 
+   299  0000                     # 6668 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   300                           ADCON0 equ 0FC2h ;# 
+   301  0000                     # 6787 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   302                           ADRES equ 0FC3h ;# 
+   303  0000                     # 6794 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   304                           ADRESL equ 0FC3h ;# 
+   305  0000                     # 6801 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   306                           ADRESH equ 0FC4h ;# 
+   307  0000                     # 6808 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   308                           SSPCON2 equ 0FC5h ;# 
+   309  0000                     # 6870 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   310                           SSPCON1 equ 0FC6h ;# 
+   311  0000                     # 6940 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   312                           SSPSTAT equ 0FC7h ;# 
+   313  0000                     # 7188 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   314                           SSPADD equ 0FC8h ;# 
+   315  0000                     # 7195 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   316                           SSPBUF equ 0FC9h ;# 
+   317  0000                     # 7202 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   318                           T2CON equ 0FCAh ;# 
+   319  0000                     # 7300 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   320                           PR2 equ 0FCBh ;# 
+   321  0000                     # 7305 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   322                           MEMCON equ 0FCBh ;# 
+   323  0000                     # 7410 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   324                           TMR2 equ 0FCCh ;# 
+   325  0000                     # 7417 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   326                           T1CON equ 0FCDh ;# 
+   327  0000                     # 7520 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   328                           TMR1 equ 0FCEh ;# 
+   329  0000                     # 7527 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   330                           TMR1L equ 0FCEh ;# 
+   331  0000                     # 7534 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   332                           TMR1H equ 0FCFh ;# 
+   333  0000                     # 7541 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   334                           RCON equ 0FD0h ;# 
+   335  0000                     # 7690 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   336                           WDTCON equ 0FD1h ;# 
+   337  0000                     # 7718 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   338                           HLVDCON equ 0FD2h ;# 
+   339  0000                     # 7723 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   340                           LVDCON equ 0FD2h ;# 
+   341  0000                     # 7988 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   342                           OSCCON equ 0FD3h ;# 
+   343  0000                     # 8071 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   344                           T0CON equ 0FD5h ;# 
+   345  0000                     # 8141 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   346                           TMR0 equ 0FD6h ;# 
+   347  0000                     # 8148 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   348                           TMR0L equ 0FD6h ;# 
+   349  0000                     # 8155 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   350                           TMR0H equ 0FD7h ;# 
+   351  0000                     # 8162 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   352                           STATUS equ 0FD8h ;# 
+   353  0000                     # 8233 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   354                           FSR2 equ 0FD9h ;# 
+   355  0000                     # 8240 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   356                           FSR2L equ 0FD9h ;# 
+   357  0000                     # 8247 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   358                           FSR2H equ 0FDAh ;# 
+   359  0000                     # 8254 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   360                           PLUSW2 equ 0FDBh ;# 
+   361  0000                     # 8261 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   362                           PREINC2 equ 0FDCh ;# 
+   363  0000                     # 8268 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   364                           POSTDEC2 equ 0FDDh ;# 
+   365  0000                     # 8275 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   366                           POSTINC2 equ 0FDEh ;# 
+   367  0000                     # 8282 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   368                           INDF2 equ 0FDFh ;# 
+   369  0000                     # 8289 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   370                           BSR equ 0FE0h ;# 
+   371  0000                     # 8296 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   372                           FSR1 equ 0FE1h ;# 
+   373  0000                     # 8303 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   374                           FSR1L equ 0FE1h ;# 
+   375  0000                     # 8310 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   376                           FSR1H equ 0FE2h ;# 
+   377  0000                     # 8317 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   378                           PLUSW1 equ 0FE3h ;# 
+   379  0000                     # 8324 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   380                           PREINC1 equ 0FE4h ;# 
+   381  0000                     # 8331 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   382                           POSTDEC1 equ 0FE5h ;# 
+   383  0000                     # 8338 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   384                           POSTINC1 equ 0FE6h ;# 
+   385  0000                     # 8345 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   386                           INDF1 equ 0FE7h ;# 
+   387  0000                     # 8352 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   388                           WREG equ 0FE8h ;# 
+   389  0000                     # 8359 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   390                           FSR0 equ 0FE9h ;# 
+   391  0000                     # 8366 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   392                           FSR0L equ 0FE9h ;# 
+   393  0000                     # 8373 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   394                           FSR0H equ 0FEAh ;# 
+   395  0000                     # 8380 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   396                           PLUSW0 equ 0FEBh ;# 
+   397  0000                     # 8387 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   398                           PREINC0 equ 0FECh ;# 
+   399  0000                     # 8394 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   400                           POSTDEC0 equ 0FEDh ;# 
+   401  0000                     # 8401 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   402                           POSTINC0 equ 0FEEh ;# 
+   403  0000                     # 8408 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   404                           INDF0 equ 0FEFh ;# 
+   405  0000                     # 8415 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   406                           INTCON3 equ 0FF0h ;# 
+   407  0000                     # 8507 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   408                           INTCON2 equ 0FF1h ;# 
+   409  0000                     # 8584 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   410                           INTCON equ 0FF2h ;# 
+   411  0000                     # 8701 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   412                           PROD equ 0FF3h ;# 
+   413  0000                     # 8708 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   414                           PRODL equ 0FF3h ;# 
+   415  0000                     # 8715 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   416                           PRODH equ 0FF4h ;# 
+   417  0000                     # 8722 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   418                           TABLAT equ 0FF5h ;# 
+   419  0000                     # 8731 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   420                           TBLPTR equ 0FF6h ;# 
+   421  0000                     # 8738 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   422                           TBLPTRL equ 0FF6h ;# 
+   423  0000                     # 8745 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   424                           TBLPTRH equ 0FF7h ;# 
+   425  0000                     # 8752 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   426                           TBLPTRU equ 0FF8h ;# 
+   427  0000                     # 8761 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   428                           PCLAT equ 0FF9h ;# 
+   429  0000                     # 8768 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   430                           PC equ 0FF9h ;# 
+   431  0000                     # 8775 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   432                           PCL equ 0FF9h ;# 
+   433  0000                     # 8782 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   434                           PCLATH equ 0FFAh ;# 
+   435  0000                     # 8789 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   436                           PCLATU equ 0FFBh ;# 
+   437  0000                     # 8796 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   438                           STKPTR equ 0FFCh ;# 
+   439  0000                     # 8872 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   440                           TOS equ 0FFDh ;# 
+   441  0000                     # 8879 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   442                           TOSL equ 0FFDh ;# 
+   443  0000                     # 8886 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   444                           TOSH equ 0FFEh ;# 
+   445  0000                     # 8893 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h"
+   446                           TOSU equ 0FFFh ;# 
+   447  0000                     	FNROOT	_main
+   448                           	global	_PORTC
+   449                           _PORTC	set	0xF82
+   450  0000                     	global	_PORTD
+   451                           _PORTD	set	0xF83
+   452  0000                     	global	_TRISD
+   453                           _TRISD	set	0xF95
+   454  0000                     	global	_TRISC
+   455                           _TRISC	set	0xF94
+   456  0000                     ; #config settings
+   457                           global __CFG_PLLDIV$1
+   458                           __CFG_PLLDIV$1 equ 0x0
+   459  0000                     global __CFG_CPUDIV$OSC1_PLL2
+   460                           __CFG_CPUDIV$OSC1_PLL2 equ 0x0
+   461  0000                     global __CFG_USBDIV$2
+   462                           __CFG_USBDIV$2 equ 0x0
+   463  0000                     global __CFG_FOSC$HS
+   464                           __CFG_FOSC$HS equ 0x0
+   465  0000                     global __CFG_FCMEN$OFF
+   466                           __CFG_FCMEN$OFF equ 0x0
+   467  0000                     global __CFG_IESO$OFF
+   468                           __CFG_IESO$OFF equ 0x0
+   469  0000                     global __CFG_PWRT$OFF
+   470                           __CFG_PWRT$OFF equ 0x0
+   471  0000                     global __CFG_BOR$OFF
+   472                           __CFG_BOR$OFF equ 0x0
+   473  0000                     global __CFG_BORV$3
+   474                           __CFG_BORV$3 equ 0x0
+   475  0000                     global __CFG_VREGEN$OFF
+   476                           __CFG_VREGEN$OFF equ 0x0
+   477  0000                     global __CFG_WDT$OFF
+   478                           __CFG_WDT$OFF equ 0x0
+   479  0000                     global __CFG_WDTPS$32768
+   480                           __CFG_WDTPS$32768 equ 0x0
+   481  0000                     global __CFG_CCP2MX$ON
+   482                           __CFG_CCP2MX$ON equ 0x0
+   483  0000                     global __CFG_PBADEN$ON
+   484                           __CFG_PBADEN$ON equ 0x0
+   485  0000                     global __CFG_LPT1OSC$OFF
+   486                           __CFG_LPT1OSC$OFF equ 0x0
+   487  0000                     global __CFG_MCLRE$ON
+   488                           __CFG_MCLRE$ON equ 0x0
+   489  0000                     global __CFG_STVREN$ON
+   490                           __CFG_STVREN$ON equ 0x0
+   491  0000                     global __CFG_LVP$OFF
+   492                           __CFG_LVP$OFF equ 0x0
+   493  0000                     global __CFG_ICPRT$OFF
+   494                           __CFG_ICPRT$OFF equ 0x0
+   495  0000                     global __CFG_XINST$OFF
+   496                           __CFG_XINST$OFF equ 0x0
+   497  0000                     global __CFG_CP0$OFF
+   498                           __CFG_CP0$OFF equ 0x0
+   499  0000                     global __CFG_CP1$OFF
+   500                           __CFG_CP1$OFF equ 0x0
+   501  0000                     global __CFG_CP2$OFF
+   502                           __CFG_CP2$OFF equ 0x0
+   503  0000                     global __CFG_CP3$OFF
+   504                           __CFG_CP3$OFF equ 0x0
+   505  0000                     global __CFG_CPB$OFF
+   506                           __CFG_CPB$OFF equ 0x0
+   507  0000                     global __CFG_CPD$OFF
+   508                           __CFG_CPD$OFF equ 0x0
+   509  0000                     global __CFG_WRT0$OFF
+   510                           __CFG_WRT0$OFF equ 0x0
+   511  0000                     global __CFG_WRT1$OFF
+   512                           __CFG_WRT1$OFF equ 0x0
+   513  0000                     global __CFG_WRT2$OFF
+   514                           __CFG_WRT2$OFF equ 0x0
+   515  0000                     global __CFG_WRT3$OFF
+   516                           __CFG_WRT3$OFF equ 0x0
+   517  0000                     global __CFG_WRTC$OFF
+   518                           __CFG_WRTC$OFF equ 0x0
+   519  0000                     global __CFG_WRTB$OFF
+   520                           __CFG_WRTB$OFF equ 0x0
+   521  0000                     global __CFG_WRTD$OFF
+   522                           __CFG_WRTD$OFF equ 0x0
+   523  0000                     global __CFG_EBTR0$OFF
+   524                           __CFG_EBTR0$OFF equ 0x0
+   525  0000                     global __CFG_EBTR1$OFF
+   526                           __CFG_EBTR1$OFF equ 0x0
+   527  0000                     global __CFG_EBTR2$OFF
+   528                           __CFG_EBTR2$OFF equ 0x0
+   529  0000                     global __CFG_EBTR3$OFF
+   530                           __CFG_EBTR3$OFF equ 0x0
+   531  0000                     global __CFG_EBTRB$OFF
+   532                           __CFG_EBTRB$OFF equ 0x0
+   533  0000                     	file	"C:\Users\PROPIE~1\AppData\Local\Temp\s1p0."
+   534                           	line	#
+   535                           psect	cinit,class=CODE,delta=1,reloc=2
+   536                           global __pcinit
+   537                           __pcinit:
+   538  007E10                     global start_initialization
+   539                           start_initialization:
+   540  007E10                     
+   541                           global __initialization
+   542                           __initialization:
+   543  007E10                     psect cinit,class=CODE,delta=1
+   544                           global end_of_initialization,__end_of__initialization
+   545                           
+   546                           ;End of C runtime variable initialization code
+   547                           
+   548                           end_of_initialization:
+   549  007E10                     __end_of__initialization:
+   550  007E10                     movlb 0
+   551  007E10  0100               goto _main	;jump to C main() function
+   552  007E12  EF0B  F03F         psect	cstackCOMRAM,class=COMRAM,space=1,noexec
+   553                           global __pcstackCOMRAM
+   554                           __pcstackCOMRAM:
+   555  000001                     ?_main:	; 2 bytes @ 0x0
+   556  000001                     main@argc:	; 2 bytes @ 0x0
+   557  000001                     	ds   2
+   558  000001                     main@argv:	; 3 bytes @ 0x2
+   559  000003                     	ds   3
+   560  000003                     ??_main:	; 1 bytes @ 0x5
+   561  000006                     	global	main@t
+   562                           main@t:	; 2 bytes @ 0x5
+   563  000006                     	ds   2
+   564  000006                     	global	main@a
+   565                           main@a:	; 2 bytes @ 0x7
+   566  000008                     	ds   2
+   567  000008                     ;!
+   568                           ;!Data Sizes:
+   569                           ;!    Strings     0
+   570                           ;!    Constant    0
+   571                           ;!    Data        0
+   572                           ;!    BSS         0
+   573                           ;!    Persistent  0
+   574                           ;!    Stack       0
+   575                           ;!
+   576                           ;!Auto Spaces:
+   577                           ;!    Space          Size  Autos    Used
+   578                           ;!    COMRAM           95      9       9
+   579                           ;!    BANK0           160      0       0
+   580                           ;!    BANK1           256      0       0
+   581                           ;!    BANK2           256      0       0
+   582                           ;!    BANK3           256      0       0
+   583                           ;!    BANK4           256      0       0
+   584                           ;!    BANK5           256      0       0
+   585                           ;!    BANK6           256      0       0
+   586                           ;!    BANK7           256      0       0
+   587                           
+   588                           ;!
+   589                           ;!Pointer List with Targets:
+   590                           ;!
+   591                           ;!    None.
+   592                           
+   593                           
+   594                           ;!
+   595                           ;!Critical Paths under _main in COMRAM
+   596                           ;!
+   597                           ;!    None.
+   598                           ;!
+   599                           ;!Critical Paths under _main in BANK0
+   600                           ;!
+   601                           ;!    None.
+   602                           ;!
+   603                           ;!Critical Paths under _main in BANK1
+   604                           ;!
+   605                           ;!    None.
+   606                           ;!
+   607                           ;!Critical Paths under _main in BANK2
+   608                           ;!
+   609                           ;!    None.
+   610                           ;!
+   611                           ;!Critical Paths under _main in BANK3
+   612                           ;!
+   613                           ;!    None.
+   614                           ;!
+   615                           ;!Critical Paths under _main in BANK4
+   616                           ;!
+   617                           ;!    None.
+   618                           ;!
+   619                           ;!Critical Paths under _main in BANK5
+   620                           ;!
+   621                           ;!    None.
+   622                           ;!
+   623                           ;!Critical Paths under _main in BANK6
+   624                           ;!
+   625                           ;!    None.
+   626                           ;!
+   627                           ;!Critical Paths under _main in BANK7
+   628                           ;!
+   629                           ;!    None.
+   630                           
+   631 ;;
+   632 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   633 ;;
+   634                           
+   635                           ;!
+   636                           ;!Call Graph Tables:
+   637                           ;!
+   638                           ;! ---------------------------------------------------------------------------------
+   639                           ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   640                           ;! ---------------------------------------------------------------------------------
+   641                           ;! (0) _main                                                 9     4      5     228
+   642                           ;!                                              0 COMRAM     9     4      5
+   643                           ;! ---------------------------------------------------------------------------------
+   644                           ;! Estimated maximum stack depth 0
+   645                           ;! ---------------------------------------------------------------------------------
+   646                           ;!
+   647                           ;! Call Graph Graphs:
+   648                           ;!
+   649                           ;! _main (ROOT)
+   650                           ;!
+   651                           
+   652                           ;! Address spaces:
+   653                           
+   654                           ;!Name               Size   Autos  Total    Cost      Usage
+   655                           ;!BITCOMRAM           5F      0       0       0        0.0%
+   656                           ;!EEDATA             100      0       0       0        0.0%
+   657                           ;!NULL                 0      0       0       0        0.0%
+   658                           ;!CODE                 0      0       0       0        0.0%
+   659                           ;!COMRAM              5F      9       9       1        9.5%
+   660                           ;!STACK                0      0       0       2        0.0%
+   661                           ;!DATA                 0      0       0       3        0.0%
+   662                           ;!BITBANK0            A0      0       0       4        0.0%
+   663                           ;!BANK0               A0      0       0       5        0.0%
+   664                           ;!BITBANK1           100      0       0       6        0.0%
+   665                           ;!BANK1              100      0       0       7        0.0%
+   666                           ;!BITBANK2           100      0       0       8        0.0%
+   667                           ;!BANK2              100      0       0       9        0.0%
+   668                           ;!BITBANK3           100      0       0      10        0.0%
+   669                           ;!BANK3              100      0       0      11        0.0%
+   670                           ;!BITBANK4           100      0       0      12        0.0%
+   671                           ;!BANK4              100      0       0      13        0.0%
+   672                           ;!BITBANK5           100      0       0      14        0.0%
+   673                           ;!BANK5              100      0       0      15        0.0%
+   674                           ;!BITBANK6           100      0       0      16        0.0%
+   675                           ;!BANK6              100      0       0      17        0.0%
+   676                           ;!BITBANK7           100      0       0      18        0.0%
+   677                           ;!BANK7              100      0       0      19        0.0%
+   678                           ;!ABS                  0      0       0      20        0.0%
+   679                           ;!BIGRAM             7FF      0       0      21        0.0%
+   680                           ;!BITSFR               0      0       0     200        0.0%
+   681                           ;!SFR                  0      0       0     200        0.0%
+   682                           
+   683                           	global	_main
+   684                           
+   685 ;; *************** function _main *****************
+   686 ;; Defined at:
+   687 ;;		line 86 in file "LAB_dir1_main.c"
+   688 ;; Parameters:    Size  Location     Type
+   689 ;;  argc            2    0[COMRAM] int 
+   690 ;;  argv            3    2[COMRAM] PTR PTR unsigned char 
+   691 ;; Auto vars:     Size  Location     Type
+   692 ;;  a               2    7[COMRAM] int 
+   693 ;;  t               2    5[COMRAM] unsigned int 
+   694 ;; Return value:  Size  Location     Type
+   695 ;;                  2    0[COMRAM] int 
+   696 ;; Registers used:
+   697 ;;		wreg, status,2, status,0
+   698 ;; Tracked objects:
+   699 ;;		On entry : 0/0
+   700 ;;		On exit  : 0/0
+   701 ;;		Unchanged: 0/0
+   702 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   703 ;;      Params:         5       0       0       0       0       0       0       0       0
+   704 ;;      Locals:         4       0       0       0       0       0       0       0       0
+   705 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   706 ;;      Totals:         9       0       0       0       0       0       0       0       0
+   707 ;;Total ram usage:        9 bytes
+   708 ;; This function calls:
+   709 ;;		Nothing
+   710 ;; This function is called by:
+   711 ;;		Startup code after reset
+   712 ;; This function uses a non-reentrant model
+   713 ;;
+   714                           psect	text0,class=CODE,space=0,reloc=2,group=0
+   715                           	file	"LAB_dir1_main.c"
+   716                           	line	86
+   717                           global __ptext0
+   718                           __ptext0:
+   719  007E16                     psect	text0
+   720                           	file	"LAB_dir1_main.c"
+   721                           	line	86
+   722                           	global	__size_of_main
+   723                           	__size_of_main	equ	__end_of_main-_main
+   724  0000                     	
+   725                           _main:
+   726  007E16                     ;incstack = 0
+   727                           	opt	stack 31
+   728                           	line	136
+   729                           	
+   730                           l782:
+   731  007E16                     ;LAB_dir1_main.c: 86: int main(int argc, char** argv);LAB_dir1_main.c: 87: {;LAB_dir1_ma
+                                 in.c: 134:     int a;;LAB_dir1_main.c: 135:     unsigned int t;;LAB_dir1_main.c: 136:   
+                                   TRISC=0xFF;
+   732                           	setf	((c:3988)),c	;volatile
+   733  007E16  6894               	line	137
+   734                           	
+   735                           l784:
+   736  007E18                     ;LAB_dir1_main.c: 137:     TRISD=0;
+   737                           	movlw	low(0)
+   738  007E18  0E00               	movwf	((c:3989)),c	;volatile
+   739  007E1A  6E95               	line	138
+   740                           ;LAB_dir1_main.c: 138:     PORTD=0;
+   741                           	movlw	low(0)
+   742  007E1C  0E00               	movwf	((c:3971)),c	;volatile
+   743  007E1E  6E83               	line	139
+   744                           ;LAB_dir1_main.c: 139: INICIO:
+   745                           	
+   746                           l13:
+   747  007E20                     	line	140
+   748                           ;LAB_dir1_main.c: 140:     if(PORTC==0) goto UP;
+   749                           	movf	((c:3970)),c,w	;volatile
+   750  007E20  5082               	btfss	status,2
+   751  007E22  A4D8               	goto	u171
+   752  007E24  EF16  F03F         	goto	u170
+   753  007E28  EF18  F03F         u171:
+   754  007E2C                     	goto	l788
+   755  007E2C  EF1C  F03F         u170:
+   756  007E30                     	goto	l792
+   757  007E30  EF2A  F03F         	
+   758                           l786:
+   759  007E34                     	goto	l792
+   760  007E34  EF2A  F03F         	
+   761                           l14:
+   762  007E38                     	line	141
+   763                           	
+   764                           l788:
+   765  007E38                     ;LAB_dir1_main.c: 141:     if(PORTC==1) goto DN;
+   766                           		decf	((c:3970)),c,w	;volatile
+   767  007E38  0482               	btfss	status,2
+   768  007E3A  A4D8               	goto	u181
+   769  007E3C  EF22  F03F         	goto	u180
+   770  007E40  EF24  F03F         
+   771                           u181:
+   772  007E44                     	goto	l792
+   773  007E44  EF2A  F03F         u180:
+   774  007E48                     	goto	l820
+   775  007E48  EF98  F03F         	
+   776                           l790:
+   777  007E4C                     	goto	l820
+   778  007E4C  EF98  F03F         	
+   779                           l16:
+   780  007E50                     	goto	l792
+   781  007E50  EF2A  F03F         	line	143
+   782                           ;LAB_dir1_main.c: 143:     UP:
+   783                           	
+   784                           l15:
+   785  007E54                     	line	144
+   786                           	
+   787                           l792:
+   788  007E54                     ;LAB_dir1_main.c: 144:     for(a=0;a<256;a++)
+   789                           	movlw	high(0)
+   790  007E54  0E00               	movwf	((c:main@a+1)),c
+   791  007E56  6E09               	movlw	low(0)
+   792  007E58  0E00               	movwf	((c:main@a)),c
+   793  007E5A  6E08               	
+   794                           l794:
+   795  007E5C                     	btfsc	((c:main@a+1)),c,7
+   796  007E5C  BE09               	goto	u191
+   797  007E5E  EF37  F03F         	decf	((c:main@a+1)),c,w
+   798  007E62  0409               	btfss	status,0
+   799  007E64  A0D8               	goto	u191
+   800  007E66  EF37  F03F         	goto	u190
+   801  007E6A  EF39  F03F         
+   802                           u191:
+   803  007E6E                     	goto	l798
+   804  007E6E  EF3F  F03F         u190:
+   805  007E72                     	goto	l13
+   806  007E72  EF10  F03F         	
+   807                           l796:
+   808  007E76                     	goto	l13
+   809  007E76  EF10  F03F         	
+   810                           l18:
+   811  007E7A                     	goto	l798
+   812  007E7A  EF3F  F03F         	line	146
+   813                           ;LAB_dir1_main.c: 145:     {;LAB_dir1_main.c: 146: LEE1: if(PORTC==2 || PORTC==3) goto L
+                                 EE1;
+   814                           	
+   815                           l20:
+   816  007E7E                     	
+   817                           l798:
+   818  007E7E                     		movlw	2
+   819  007E7E  0E02               	xorwf	((c:3970)),c,w	;volatile
+   820  007E80  1882               	btfsc	status,2
+   821  007E82  B4D8               	goto	u201
+   822  007E84  EF46  F03F         	goto	u200
+   823  007E88  EF48  F03F         
+   824                           u201:
+   825  007E8C                     	goto	l798
+   826  007E8C  EF3F  F03F         u200:
+   827  007E90                     	
+   828                           l800:
+   829  007E90                     		movlw	3
+   830  007E90  0E03               	xorwf	((c:3970)),c,w	;volatile
+   831  007E92  1882               	btfss	status,2
+   832  007E94  A4D8               	goto	u211
+   833  007E96  EF4F  F03F         	goto	u210
+   834  007E9A  EF51  F03F         
+   835                           u211:
+   836  007E9E                     	goto	l21
+   837  007E9E  EF55  F03F         u210:
+   838  007EA2                     	goto	l798
+   839  007EA2  EF3F  F03F         	
+   840                           l23:
+   841  007EA6                     	goto	l798
+   842  007EA6  EF3F  F03F         	
+   843                           l21:
+   844  007EAA                     	line	147
+   845                           ;LAB_dir1_main.c: 147:         PORTD=a;
+   846                           	movff	(c:main@a),(c:3971)	;volatile
+   847  007EAA  C008  FF83         	line	148
+   848                           	
+   849                           l802:
+   850  007EAE                     ;LAB_dir1_main.c: 148:         for(t=0;t<60000;t++){}
+   851                           	movlw	high(0)
+   852  007EAE  0E00               	movwf	((c:main@t+1)),c
+   853  007EB0  6E07               	movlw	low(0)
+   854  007EB2  0E00               	movwf	((c:main@t)),c
+   855  007EB4  6E06               	
+   856                           l804:
+   857  007EB6                     		movlw	96
+   858  007EB6  0E60               	subwf	 ((c:main@t)),c,w
+   859  007EB8  5C06               	movlw	234
+   860  007EBA  0EEA               	subwfb	((c:main@t+1)),c,w
+   861  007EBC  5807               	btfss	status,0
+   862  007EBE  A0D8               	goto	u221
+   863  007EC0  EF64  F03F         	goto	u220
+   864  007EC4  EF66  F03F         
+   865                           u221:
+   866  007EC8                     	goto	l808
+   867  007EC8  EF6A  F03F         u220:
+   868  007ECC                     	goto	l812
+   869  007ECC  EF79  F03F         	
+   870                           l806:
+   871  007ED0                     	goto	l812
+   872  007ED0  EF79  F03F         	
+   873                           l24:
+   874  007ED4                     	
+   875                           l808:
+   876  007ED4                     	infsnz	((c:main@t)),c
+   877  007ED4  4A06               	incf	((c:main@t+1)),c
+   878  007ED6  2A07               	
+   879                           l810:
+   880  007ED8                     		movlw	96
+   881  007ED8  0E60               	subwf	 ((c:main@t)),c,w
+   882  007EDA  5C06               	movlw	234
+   883  007EDC  0EEA               	subwfb	((c:main@t+1)),c,w
+   884  007EDE  5807               	btfss	status,0
+   885  007EE0  A0D8               	goto	u231
+   886  007EE2  EF75  F03F         	goto	u230
+   887  007EE6  EF77  F03F         
+   888                           u231:
+   889  007EEA                     	goto	l808
+   890  007EEA  EF6A  F03F         u230:
+   891  007EEE                     	goto	l812
+   892  007EEE  EF79  F03F         	
+   893                           l25:
+   894  007EF2                     	line	149
+   895                           	
+   896                           l812:
+   897  007EF2                     ;LAB_dir1_main.c: 149:         if(PORTC==1)goto DN2;
+   898                           		decf	((c:3970)),c,w	;volatile
+   899  007EF2  0482               	btfss	status,2
+   900  007EF4  A4D8               	goto	u241
+   901  007EF6  EF7F  F03F         	goto	u240
+   902  007EFA  EF81  F03F         
+   903                           u241:
+   904  007EFE                     	goto	l816
+   905  007EFE  EF87  F03F         u240:
+   906  007F02                     	goto	l844
+   907  007F02  EFF0  F03F         	
+   908                           l814:
+   909  007F06                     	goto	l844
+   910  007F06  EFF0  F03F         	
+   911                           l26:
+   912  007F0A                     	goto	l816
+   913  007F0A  EF87  F03F         	line	150
+   914                           ;LAB_dir1_main.c: 150: UP2:;
+   915                           	
+   916                           l28:
+   917  007F0E                     	line	151
+   918                           	
+   919                           l816:
+   920  007F0E                     ;LAB_dir1_main.c: 151:     }
+   921                           	infsnz	((c:main@a)),c
+   922  007F0E  4A08               	incf	((c:main@a+1)),c
+   923  007F10  2A09               	
+   924                           l818:
+   925  007F12                     	btfsc	((c:main@a+1)),c,7
+   926  007F12  BE09               	goto	u251
+   927  007F14  EF92  F03F         	decf	((c:main@a+1)),c,w
+   928  007F18  0409               	btfss	status,0
+   929  007F1A  A0D8               	goto	u251
+   930  007F1C  EF92  F03F         	goto	u250
+   931  007F20  EF94  F03F         
+   932                           u251:
+   933  007F24                     	goto	l798
+   934  007F24  EF3F  F03F         u250:
+   935  007F28                     	goto	l13
+   936  007F28  EF10  F03F         	
+   937                           l19:
+   938  007F2C                     	line	152
+   939                           ;LAB_dir1_main.c: 152:     goto INICIO;
+   940                           	goto	l13
+   941  007F2C  EF10  F03F         	line	154
+   942                           ;LAB_dir1_main.c: 154:     DN:
+   943                           	
+   944                           l17:
+   945  007F30                     	line	155
+   946                           	
+   947                           l820:
+   948  007F30                     ;LAB_dir1_main.c: 155:     for(a=255;a>=0;a--)
+   949                           	movlw	high(0FFh)
+   950  007F30  0E00               	movwf	((c:main@a+1)),c
+   951  007F32  6E09               	setf	((c:main@a)),c
+   952  007F34  6808               	
+   953                           l822:
+   954  007F36                     	btfsc	((c:main@a+1)),c,7
+   955  007F36  BE09               	goto	u260
+   956  007F38  EFA2  F03F         	goto	u261
+   957  007F3C  EFA0  F03F         
+   958                           u261:
+   959  007F40                     	goto	l826
+   960  007F40  EFA8  F03F         u260:
+   961  007F44                     	goto	l13
+   962  007F44  EF10  F03F         	
+   963                           l824:
+   964  007F48                     	goto	l13
+   965  007F48  EF10  F03F         	
+   966                           l29:
+   967  007F4C                     	goto	l826
+   968  007F4C  EFA8  F03F         	line	157
+   969                           ;LAB_dir1_main.c: 156:     {;LAB_dir1_main.c: 157: LEE3: if(PORTC==2 || PORTC==3) goto L
+                                 EE3;
+   970                           	
+   971                           l31:
+   972  007F50                     	
+   973                           l826:
+   974  007F50                     		movlw	2
+   975  007F50  0E02               	xorwf	((c:3970)),c,w	;volatile
+   976  007F52  1882               	btfsc	status,2
+   977  007F54  B4D8               	goto	u271
+   978  007F56  EFAF  F03F         	goto	u270
+   979  007F5A  EFB1  F03F         
+   980                           u271:
+   981  007F5E                     	goto	l826
+   982  007F5E  EFA8  F03F         u270:
+   983  007F62                     	
+   984                           l828:
+   985  007F62                     		movlw	3
+   986  007F62  0E03               	xorwf	((c:3970)),c,w	;volatile
+   987  007F64  1882               	btfss	status,2
+   988  007F66  A4D8               	goto	u281
+   989  007F68  EFB8  F03F         	goto	u280
+   990  007F6C  EFBA  F03F         
+   991                           u281:
+   992  007F70                     	goto	l32
+   993  007F70  EFBE  F03F         u280:
+   994  007F74                     	goto	l826
+   995  007F74  EFA8  F03F         	
+   996                           l34:
+   997  007F78                     	goto	l826
+   998  007F78  EFA8  F03F         	
+   999                           l32:
+  1000  007F7C                     	line	158
+  1001                           ;LAB_dir1_main.c: 158:         PORTD=a;
+  1002                           	movff	(c:main@a),(c:3971)	;volatile
+  1003  007F7C  C008  FF83         	line	159
+  1004                           	
+  1005                           l830:
+  1006  007F80                     ;LAB_dir1_main.c: 159:         for(t=0;t<60000;t++){}
+  1007                           	movlw	high(0)
+  1008  007F80  0E00               	movwf	((c:main@t+1)),c
+  1009  007F82  6E07               	movlw	low(0)
+  1010  007F84  0E00               	movwf	((c:main@t)),c
+  1011  007F86  6E06               	
+  1012                           l832:
+  1013  007F88                     		movlw	96
+  1014  007F88  0E60               	subwf	 ((c:main@t)),c,w
+  1015  007F8A  5C06               	movlw	234
+  1016  007F8C  0EEA               	subwfb	((c:main@t+1)),c,w
+  1017  007F8E  5807               	btfss	status,0
+  1018  007F90  A0D8               	goto	u291
+  1019  007F92  EFCD  F03F         	goto	u290
+  1020  007F96  EFCF  F03F         
+  1021                           u291:
+  1022  007F9A                     	goto	l836
+  1023  007F9A  EFD3  F03F         u290:
+  1024  007F9E                     	goto	l840
+  1025  007F9E  EFE2  F03F         	
+  1026                           l834:
+  1027  007FA2                     	goto	l840
+  1028  007FA2  EFE2  F03F         	
+  1029                           l35:
+  1030  007FA6                     	
+  1031                           l836:
+  1032  007FA6                     	infsnz	((c:main@t)),c
+  1033  007FA6  4A06               	incf	((c:main@t+1)),c
+  1034  007FA8  2A07               	
+  1035                           l838:
+  1036  007FAA                     		movlw	96
+  1037  007FAA  0E60               	subwf	 ((c:main@t)),c,w
+  1038  007FAC  5C06               	movlw	234
+  1039  007FAE  0EEA               	subwfb	((c:main@t+1)),c,w
+  1040  007FB0  5807               	btfss	status,0
+  1041  007FB2  A0D8               	goto	u301
+  1042  007FB4  EFDE  F03F         	goto	u300
+  1043  007FB8  EFE0  F03F         
+  1044                           u301:
+  1045  007FBC                     	goto	l836
+  1046  007FBC  EFD3  F03F         u300:
+  1047  007FC0                     	goto	l840
+  1048  007FC0  EFE2  F03F         	
+  1049                           l36:
+  1050  007FC4                     	line	160
+  1051                           	
+  1052                           l840:
+  1053  007FC4                     ;LAB_dir1_main.c: 160:         if(PORTC==0)goto UP2;
+  1054                           	movf	((c:3970)),c,w	;volatile
+  1055  007FC4  5082               	btfss	status,2
+  1056  007FC6  A4D8               	goto	u311
+  1057  007FC8  EFE8  F03F         	goto	u310
+  1058  007FCC  EFEA  F03F         u311:
+  1059  007FD0                     	goto	l844
+  1060  007FD0  EFF0  F03F         u310:
+  1061  007FD4                     	goto	l816
+  1062  007FD4  EF87  F03F         	
+  1063                           l842:
+  1064  007FD8                     	goto	l816
+  1065  007FD8  EF87  F03F         	
+  1066                           l37:
+  1067  007FDC                     	goto	l844
+  1068  007FDC  EFF0  F03F         	line	161
+  1069                           ;LAB_dir1_main.c: 161: DN2:;
+  1070                           	
+  1071                           l27:
+  1072  007FE0                     	line	162
+  1073                           	
+  1074                           l844:
+  1075  007FE0                     ;LAB_dir1_main.c: 162:     }
+  1076                           	decf	((c:main@a)),c
+  1077  007FE0  0608               	btfss	status,0
+  1078  007FE2  A0D8               	decf	((c:main@a+1)),c
+  1079  007FE4  0609               	
+  1080                           l846:
+  1081  007FE6                     	btfsc	((c:main@a+1)),c,7
+  1082  007FE6  BE09               	goto	u320
+  1083  007FE8  EFFA  F03F         	goto	u321
+  1084  007FEC  EFF8  F03F         
+  1085                           u321:
+  1086  007FF0                     	goto	l826
+  1087  007FF0  EFA8  F03F         u320:
+  1088  007FF4                     	goto	l13
+  1089  007FF4  EF10  F03F         	
+  1090                           l30:
+  1091  007FF8                     	line	163
+  1092                           ;LAB_dir1_main.c: 163:     goto INICIO;
+  1093                           	goto	l13
+  1094  007FF8  EF10  F03F         	line	166
+  1095                           	
+  1096                           l848:
+  1097  007FFC                     	line	167
+  1098                           ;LAB_dir1_main.c: 166:     return (0);;	Return value of _main is never used
+  1099                           	
+  1100                           l38:
+  1101  007FFC                     	global	start
+  1102                           	goto	start
+  1103  007FFC  EF00  F000         	opt stack 0
+  1104                           GLOBAL	__end_of_main
+  1105                           	__end_of_main:
+  1106  008000                     	signat	_main,8314
+  1107                           	GLOBAL	__activetblptr
+  1108                           __activetblptr	EQU	0
+  1109  0000                     	psect	intsave_regs,class=BIGRAM,space=1,noexec
+  1110                           	PSECT	rparam,class=COMRAM,space=1,noexec
+  1111                           	GLOBAL	__Lrparam
+  1112                           	FNCONF	rparam,??,?
+  1113                           	GLOBAL	___rparam_used
+  1114                           	___rparam_used EQU 1
+  1115  0000                     	GLOBAL	___param_bank
+  1116                           	___param_bank EQU 0
+  1117  0000                     GLOBAL	__Lparam, __Hparam
+  1118                           GLOBAL	__Lrparam, __Hrparam
+  1119                           __Lparam	EQU	__Lrparam
+  1120  0000                     __Hparam	EQU	__Hrparam
+  1121  0000                     	end
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      9       9
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 9     4      5     228
+                                              0 COMRAM     9     4      5
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 0
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F      9       9       1        9.5%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       0      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.00 build -1524193055 
+Symbol Table                                                                                   Mon Sep 03 13:36:51 2018
+
+                     l20 7E7E                       l21 7EAA                       l13 7E20  
+                     l30 7FF8                       l14 7E38                       l31 7F50  
+                     l23 7EA6                       l15 7E54                       l32 7F7C  
+                     l24 7ED4                       l16 7E50                       l17 7F30  
+                     l25 7EF2                       l34 7F78                       l26 7F0A  
+                     l18 7E7A                       l27 7FE0                       l35 7FA6  
+                     l19 7F2C                       l36 7FC4                       l28 7F0E  
+                     l37 7FDC                       l29 7F4C                       l38 7FFC  
+            __CFG_BORV$3 000000             __CFG_CP0$OFF 000000             __CFG_CP1$OFF 000000  
+           __CFG_CP2$OFF 000000             __CFG_CP3$OFF 000000                      l800 7E90  
+                    l810 7ED8                      l802 7EAE                      l812 7EF2  
+                    l804 7EB6                      l820 7F30                      l830 7F80  
+                    l822 7F36                      l814 7F06                      l806 7ED0  
+                    l840 7FC4                      l832 7F88                      l824 7F48  
+                    l816 7F0E                      l808 7ED4                      l842 7FD8  
+                    l834 7FA2                      l826 7F50                      l818 7F12  
+                    l836 7FA6                      l828 7F62                      l844 7FE0  
+                    l846 7FE6                      l838 7FAA                      l790 7E4C  
+                    l782 7E16                      l848 7FFC                      l792 7E54  
+                    l784 7E18                      l794 7E5C                      l786 7E34  
+                    l796 7E76                      l788 7E38                      l798 7E7E  
+           __CFG_CPB$OFF 000000                      u200 7E90                      u201 7E8C  
+                    u210 7EA2                      u211 7E9E                      u300 7FC0  
+                    u220 7ECC                      u301 7FBC                      u221 7EC8  
+                    u310 7FD4                      u230 7EEE                      u311 7FD0  
+                    u231 7EEA                      u320 7FF4                      u240 7F02  
+                    u321 7FF0                      u241 7EFE                      u250 7F28  
+                    u170 7E30                      u251 7F24                      u171 7E2C  
+                    u260 7F44                      u180 7E48                      u261 7F40  
+                    u181 7E44                      u270 7F62                      u190 7E72  
+                    u271 7F5E                      u191 7E6E                      u280 7F74  
+                    u281 7F70                      u290 7F9E             __CFG_CPD$OFF 000000  
+                    u291 7F9A             __CFG_BOR$OFF 000000             __CFG_FOSC$HS 000000  
+           __CFG_LVP$OFF 000000             __CFG_WDT$OFF 000000                     _main 7E16  
+                   start 0000            __CFG_IESO$OFF 000000            __CFG_MCLRE$ON 000000  
+           ___param_bank 000000            __CFG_PLLDIV$1 000000           __CFG_CCP2MX$ON 000000  
+                  ?_main 0001                    _PORTC 000F82                    _PORTD 000F83  
+          __CFG_USBDIV$2 000000                    _TRISC 000F94                    _TRISD 000F95  
+          __CFG_PWRT$OFF 000000            __CFG_WRT0$OFF 000000            __CFG_WRT1$OFF 000000  
+          __CFG_WRT2$OFF 000000            __CFG_WRT3$OFF 000000           __CFG_EBTR0$OFF 000000  
+         __CFG_FCMEN$OFF 000000           __CFG_EBTR1$OFF 000000           __CFG_EBTR2$OFF 000000  
+         __CFG_EBTR3$OFF 000000            __CFG_WRTB$OFF 000000            __CFG_WRTC$OFF 000000  
+          __CFG_WRTD$OFF 000000           __CFG_EBTRB$OFF 000000                    main@a 0008  
+                  main@t 0006                    status 000FD8           __CFG_ICPRT$OFF 000000  
+         __CFG_PBADEN$ON 000000          __initialization 7E10             __end_of_main 8000  
+                 ??_main 0006            __activetblptr 000000           __CFG_XINST$OFF 000000  
+         __CFG_STVREN$ON 000000               __accesstop 0060  __end_of__initialization 7E10  
+          ___rparam_used 000001           __pcstackCOMRAM 0001          __CFG_VREGEN$OFF 000000  
+                __Hparam 0000                  __Lparam 0000                  __pcinit 7E10  
+                __ramtop 0800                  __ptext0 7E16     end_of_initialization 7E10  
+    start_initialization 7E10         __CFG_LPT1OSC$OFF 000000         __CFG_WDTPS$32768 000000  
+               __Hrparam 0000                 __Lrparam 0000            __size_of_main 01EA  
+               main@argc 0001                 main@argv 0003    __CFG_CPUDIV$OSC1_PLL2 000000  

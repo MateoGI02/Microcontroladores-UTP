@@ -1,0 +1,164 @@
+[p LITE_MODE AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"7 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"7 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"83 C:\Users\Propietario\Desktop\Lab_Dir_5\Lab_Dir_5.X\Lab_Dir_5.c
+[v _TMR0_Init TMR0_Init `(v  1 e 1 0 ]
+"92
+[v _main main `(v  1 e 1 0 ]
+"168
+[v _tc_int tc_int `IIH(v  1 e 1 0 ]
+"2563 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4550.h
+[v _PORTC PORTC `VEuc  1 e 1 @3970 ]
+[s S77 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"2605
+[s S86 . 1 `uc 1 T1OSO 1 0 :1:0 
+`uc 1 T1OSI 1 0 :1:1 
+`uc 1 CCP1 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 TX 1 0 :1:6 
+`uc 1 RX 1 0 :1:7 
+]
+[s S93 . 1 `uc 1 T13CKI 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 P1A 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 CK 1 0 :1:6 
+`uc 1 DT 1 0 :1:7 
+]
+[s S100 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 CCP2 1 0 :1:1 
+`uc 1 PA1 1 0 :1:2 
+]
+[s S104 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PA2 1 0 :1:1 
+]
+[u S107 . 1 `S77 1 . 1 0 `S86 1 . 1 0 `S93 1 . 1 0 `S100 1 . 1 0 `S104 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES107  1 e 1 @3970 ]
+"2705
+[v _PORTD PORTD `VEuc  1 e 1 @3971 ]
+"3847
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"4001
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"8069
+[v _T0CON T0CON `VEuc  1 e 1 @4053 ]
+"8146
+[v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
+"8153
+[v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
+[s S24 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"8614
+[s S33 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S42 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S46 . 1 `S24 1 . 1 0 `S33 1 . 1 0 `S42 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES46  1 e 1 @4082 ]
+"81 C:\Users\Propietario\Desktop\Lab_Dir_5\Lab_Dir_5.X\Lab_Dir_5.c
+[v _count count `i  1 e 2 0 ]
+"92
+[v _main main `(v  1 e 1 0 ]
+{
+"96
+[v main@m m `[12]i  1 a 24 10 ]
+"95
+[v main@c c `[4]i  1 a 8 34 ]
+"97
+[v main@a a `i  1 a 2 46 ]
+[v main@u u `i  1 a 2 44 ]
+[v main@d d `i  1 a 2 42 ]
+"94
+[v main@F3481 F3481 `[4]i  1 s 8 F3481 ]
+"95
+[v main@F3483 F3483 `[12]i  1 s 24 F3483 ]
+"166
+} 0
+"7 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 6 ]
+[v ___awmod@counter counter `uc  1 a 1 5 ]
+"7
+[v ___awmod@dividend dividend `i  1 p 2 1 ]
+[v ___awmod@divisor divisor `i  1 p 2 3 ]
+"34
+} 0
+"7 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 7 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 6 ]
+[v ___awdiv@counter counter `uc  1 a 1 5 ]
+"7
+[v ___awdiv@dividend dividend `i  1 p 2 1 ]
+[v ___awdiv@divisor divisor `i  1 p 2 3 ]
+"41
+} 0
+"83 C:\Users\Propietario\Desktop\Lab_Dir_5\Lab_Dir_5.X\Lab_Dir_5.c
+[v _TMR0_Init TMR0_Init `(v  1 e 1 0 ]
+{
+"91
+} 0
+"168
+[v _tc_int tc_int `IIH(v  1 e 1 0 ]
+{
+"180
+} 0
